@@ -6,7 +6,40 @@
     <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Redberry</title>
   </head>
-  <body></body>
+  <body>
+    <!-- making header -->
+    <header class="header">
+      <img
+        class="header__img"
+        src="https://s3-alpha-sig.figma.com/img/f69b/80be/31a111bebc15f4f9df757da172ce198d?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bG9wwP-DGzDOFXMn62An~vg~7DmeK3xRSv98MzLcYSrxx-K3J3l7GbTQClJyknyaRH4g3JAWz7xGfXJuCh3CXyq0K8oZ6DaE4xFclq89NQaan9EqOYSsVcDaEB~i93bK3EBShzLtYEP3fYhofaV8mX3KSaOS7TXbI8Uz9W0xGh4k3GwNkL8jvUcmdbfM0LW1SFnpxPbbJ7Cgu9ZWh4I~TwEAtRRhUzzLe5obC~O-uQ4W120B9Q~3iozO-ZhxLlwPda3-fRWwNOmqM7atipn3kstOfllho0W5QkK0zN1Y9BvIYpb2sDE-674~g4T6NMVjoDVBWUe-FwPX1Dp~1zuEyA__"
+        alt="redberry-logo"
+      />
+      <button class="header__btn" id="header__btn">შესვლა</button>
+    </header>
+
+    <!-- when i press the button the functionality happens here -->
+    <div class="dark__theme" id="dark__theme"></div>
+    <div class="header__container" id="header__container">
+      <h3>შესვლა</h3>
+      <p>ელ-ფოსტა</p>
+      <input type="text"  placeholder="Example@redberry.ge"/>
+      <br>
+      <span class="header__error"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10.0002 1.66666C5.41683 1.66666 1.66683 5.41666 1.66683 10C1.66683 14.5833 5.41683 18.3333 10.0002 18.3333C14.5835 18.3333 18.3335 14.5833 18.3335 10C18.3335 5.41666 14.5835 1.66666 10.0002 1.66666Z" fill="#EA1919"/>
+        <path d="M10 13.3333L10 9.16666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.0044 6.66667L9.99691 6.66667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg> ელ-ფოსტა არ მოიძებნა</span>
+      <br>
+      <button id="signin__btn">შესვლა</button>
+
+      <svg class="cancel__btn" id="cancel__btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M7.75732 16.2426L16.2426 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.2426 16.2426L7.75732 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+
+  </body>
 </html>
