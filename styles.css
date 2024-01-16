@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* header section */
+.header {
+  height: 80px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 45vw;
+  border-bottom: 1px solid #e4e3eb;
+  background: #fff;
+}
+.header__img {
+  width: 150px;
+  height: 24px;
+}
+.header__btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #5d37f3;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+/* dark theme and container*/
+
+.dark__theme {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.24;
+  background: #1a1a1f;
+  display: none;
+}
+.dark__theme.active {
+
+  display: block;
+}
+.header__container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 480px;
+  height: 272px;
+  background: #fff;
+  border-radius: 12px;
+}
+.header__container.active {
+  display: block;
+}
+.header__container .cancel__btn {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.header__container h3 {
+  padding-top: 40px;
+  color: #1a1a1f;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.header__container p {
+  padding-top: 24px;
+  padding-left: 24px;
+  color: #1a1a1f;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.header__container input {
+  margin-top: 8px;
+  margin-left: 24px;
+  padding: 12px 16px;
+  width: 432px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid #fff;
+  outline: none;
+  background: #f7f7ff;
+  color: #1a1a1f;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.header__container input:focus {
+  margin-top: 8px;
+  margin-left: 24px;
+  padding: 12px 16px;
+  width: 432px;
+  height: 44px;
+  border-radius: 12px;
+  border-radius: 12px;
+  border: 1.5px solid #5d37f3;
+  background: #f7f7ff;
+}
+.header__container button {
+  cursor: pointer;
+  width: 432px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border: none;
+  border-radius: 8px;
+  background: #5d37f3;
+  color: #fff;
+}
+
+/* if there is an error */
+.header__container input.error {
+  width: 432px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #ea1919;
+  background: #faf2f3;
+}
+.header__error {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: 24px;
+    margin-top: 8px;
+    color: #ea1919;
+    font-size: 12px;
+    font-weight: 400;
+    display: none;
+}
