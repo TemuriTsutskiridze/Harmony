@@ -24,6 +24,18 @@
   font-weight: 500;
   line-height: 20px;
 }
+.header .blog__btn{
+    display: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #5d37f3;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
 /* dark theme and container*/
 
 .dark__theme {
@@ -49,6 +61,9 @@
   height: 272px;
   background: #fff;
   border-radius: 12px;
+}
+.header__container-login{
+    display: none;
 }
 .header__container.active {
   display: block;
@@ -114,6 +129,7 @@
   color: #fff;
 }
 
+
 /* if there is an error */
 .header__container input.error {
   width: 432px;
@@ -132,4 +148,46 @@
   font-size: 12px;
   font-weight: 400;
   display: none;
+}
+.header__error.active{
+    display: flex;
+}
+
+/* header container after validation */
+
+.header__container-valid{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 480px;
+    height: 272px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    display: none;
+}
+.header__container-valid.active{
+    display: flex;
+}
+.header__container-valid button{
+    cursor: pointer;
+    width: 432px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: #5d37f3;
+    color: #fff;
+}
+.header__container-valid .cancel__btn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
