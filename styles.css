@@ -1,6 +1,19 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.hero-section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 64px;
+}
+
+.hero-section h1{
+color: #1A1A1F;
+font-size: 64px;
+font-weight: 700;
+line-height: 72px;
+}
+
+.hero-section img{
+width: 624px;
+height: 200px;
 }
 
