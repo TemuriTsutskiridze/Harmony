@@ -1,6 +1,79 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body{
+  background-color: #F3F2FA;
 }
+
+.hero-section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 64px;
+}
+
+.hero-section h1{
+color: #1A1A1F;
+font-size: 64px;
+font-weight: 700;
+line-height: 72px;
+}
+
+.hero-section img{
+width: 624px;
+height: 200px;
+}
+
+.navigation-container{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 24px;
+margin-top: 64px;
+}
+
+.btn-common{
+display: flex;
+padding: 8px 16px;
+align-items: flex-start;
+gap: 10px;
+border-radius: 30px;
+border: none;
+font-family: FiraGO;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px;
+cursor: pointer;
+}
+
+.shop-category{
+background-color: rgba(255, 184, 47, 0.08);
+color: #D6961C;
+}
+
+
+.app-category{
+background-color: rgba(28, 214, 125, 0.08);
+color: #15C972;
+}
+
+.ai-category{
+background-color: rgba(177, 28, 214, 0.08);
+color: #B71FDD;
+}
+
+.ui-ux-category{
+background-color: rgba(250, 87, 87, 0.08);
+color: #DC2828;
+}
+
+.research-category{
+background-color: rgba(112, 207, 37, 0.08);
+color: #60BE16;
+}
+
+.figma-category{
+background-color: rgba(8, 210, 174, 0.08);
+color: #1AC7A8;
+}
+
+
 
