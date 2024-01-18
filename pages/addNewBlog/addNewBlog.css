@@ -1,0 +1,91 @@
+body{
+    overflow-x: hidden;
+}
+/* main title st */
+.main__title {
+  color: #1a1a1f;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 40px;
+  margin: 40px 0;
+}
+
+/* input sections (main) */
+
+.main {
+  padding: 0 16px;
+  width: 375px;
+  margin: auto;
+}
+.main__dropimg {
+  width: 100%;
+  border-radius: 20px;
+  /* desktop change */
+  height: 170px;
+}
+.main__dropimg-title {
+  color: #1a1a1f;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+#drop-area {
+  text-align: center;
+}
+#img-view {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px dashed #85858d;
+  background-color: #f1effb;
+  line-height: 25px;
+  /* display: none; */
+}
+#img-view svg {
+  margin-top: 25px;
+  cursor: pointer;
+}
+#img-view p {
+  margin-top: 10px;
+}
+#img-view span {
+  /* desktop change */
+  display: block;
+
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* added images  */
+.img-view__added {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #f1effb;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 10px;
+  position: relative;
+  display: none;
+}
+.img-view__added img {
+  width: 34px;
+  height: 34px;
+  border-radius: 10%;
+  background-position: center;
+  object-fit: cover;
+}
+
+.img-view__added svg {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  z-index: 32;
+}
+
+/* responsive mobile -> desktop */
+@media screen and (min-width:768px) {
+  .main {
+    width: 600px;
+  }
+}
