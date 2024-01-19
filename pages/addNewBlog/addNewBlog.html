@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../common.css" />
     <link rel="stylesheet" href="addNewBlog.css" />
     <script src="addNewBlog.js" defer></script>
+
     <title>Redberry</title>
   </head>
   <body onload="loadInputs()">
@@ -13,7 +14,7 @@
     <header class="header">
       <img
         class="header__img"
-        style="cursor: pointer;"
+        style="cursor: pointer"
         onclick="headerClick()"
         src="https://s3-alpha-sig.figma.com/img/f69b/80be/31a111bebc15f4f9df757da172ce198d?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bG9wwP-DGzDOFXMn62An~vg~7DmeK3xRSv98MzLcYSrxx-K3J3l7GbTQClJyknyaRH4g3JAWz7xGfXJuCh3CXyq0K8oZ6DaE4xFclq89NQaan9EqOYSsVcDaEB~i93bK3EBShzLtYEP3fYhofaV8mX3KSaOS7TXbI8Uz9W0xGh4k3GwNkL8jvUcmdbfM0LW1SFnpxPbbJ7Cgu9ZWh4I~TwEAtRRhUzzLe5obC~O-uQ4W120B9Q~3iozO-ZhxLlwPda3-fRWwNOmqM7atipn3kstOfllho0W5QkK0zN1Y9BvIYpb2sDE-674~g4T6NMVjoDVBWUe-FwPX1Dp~1zuEyA__"
         alt="redberry-logo"
@@ -77,6 +78,7 @@
         </label>
       </div>
 
+      <!-- author and title -->
       <div class="main__inputs">
         <div class="main__inputs-first">
           <label for="author">ავტორი *</label>
@@ -93,6 +95,15 @@
           <p class="title-error">მინიმუმ 4 სიმბოლო</p>
         </div>
       </div>
+      <!-- description -->
+      <div class="main__description">
+        <label for="description">აღწერა *</label>
+        <textarea name="" id="description" rows="5"></textarea>
+        <p>მინიმუმ 2 სიმბოლო</p>
+      </div>
+      <!-- date and category -->
+
+      <div class="date__category"></div>
     </main>
   </body>
 </html>

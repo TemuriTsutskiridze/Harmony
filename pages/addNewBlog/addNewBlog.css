@@ -132,30 +132,61 @@ body {
 }
 .main__inputs p.error {
   color: #ea1919;
-  
 }
 .main__inputs input.error {
-    border: 1px solid #ea1919;
-    background-color: rgba(250, 87, 87, 0.08);
-  }
-  .main__inputs input.active {
-    border: 1px solid #14D81C;
-    background-color: rgba(8, 210, 174, 0.08);
-
-
-
-  }
-/*  */
-.main__inputs p {
-  color: #85858d;
-  font-size: 12px;
-  font-weight: 400;
+  border: 1px solid #ea1919;
+  background-color: rgba(250, 87, 87, 0.08);
+}
+.main__inputs input.active {
+  border: 1px solid #14d81c;
+  background-color: rgba(8, 210, 174, 0.08);
+}
+/*  description section */
+.main__description {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.main__description label {
+  color: #1a1a1f;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 20px;
 }
+.main__description textarea {
+  resize: vertical;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #E4E3EB;
+  background-color: #FCFCFD;
+}
+.main__description textarea.active {
+  border: 1px solid #14D81C;
+  background-color: rgba(8, 210, 174, 0.08);
+}
+.main__description textarea.error {
+  border: 1px solid #ea1919;
+  background-color: rgba(250, 87, 87, 0.08);
+}
+.main__description p {
+  color: #85858D;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px; 
+}
 /* control with javascript */
-.main__inputs p.active {
+.main__description p.active {
   color: #14d81c;
 }
+.main__description p.error {
+  color: #ea1919;
+}
+/* date and category */
+
+
+
 
 /* responsive mobile -> desktop */
 @media screen and (min-width: 768px) {
