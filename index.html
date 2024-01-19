@@ -25,61 +25,229 @@
     <div class="header__container" id="header__container">
       <h3>შესვლა</h3>
       <p>ელ-ფოსტა</p>
-      <input type="text"  placeholder="Example@redberry.ge"/>
-      <br>
-      <span class="header__error" id="header__error"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10.0002 1.66666C5.41683 1.66666 1.66683 5.41666 1.66683 10C1.66683 14.5833 5.41683 18.3333 10.0002 18.3333C14.5835 18.3333 18.3335 14.5833 18.3335 10C18.3335 5.41666 14.5835 1.66666 10.0002 1.66666Z" fill="#EA1919"/>
-        <path d="M10 13.3333L10 9.16666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10.0044 6.66667L9.99691 6.66667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg> ელ-ფოსტა არ მოიძებნა</span>
-      <br>
+      <input type="text" id="user__email" placeholder="Example@redberry.ge" />
+      <br />
+      <span class="header__error" id="header__error"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M10.0002 1.66666C5.41683 1.66666 1.66683 5.41666 1.66683 10C1.66683 14.5833 5.41683 18.3333 10.0002 18.3333C14.5835 18.3333 18.3335 14.5833 18.3335 10C18.3335 5.41666 14.5835 1.66666 10.0002 1.66666Z"
+            fill="#EA1919"
+          />
+          <path
+            d="M10 13.3333L10 9.16666"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M10.0044 6.66667L9.99691 6.66667"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        ელ-ფოსტა არ მოიძებნა</span
+      >
+      <br />
       <button id="signin__btn">შესვლა</button>
 
-      <svg class="cancel__btn" id="cancel__btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M7.75732 16.2426L16.2426 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M16.2426 16.2426L7.75732 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg
+        class="cancel__btn"
+        id="cancel__btn"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M7.75732 16.2426L16.2426 7.75736"
+          stroke="#1A1A1F"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.2426 16.2426L7.75732 7.75736"
+          stroke="#1A1A1F"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
     </div>
 
     <!-- header container after validation -->
-    <div class="header__container-valid " id="header__container-valid">
-      <svg class="cancel__btn " id="cancel__btn-valid" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M7.75732 16.2426L16.2426 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M16.2426 16.2426L7.75732 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="header__container-valid" id="header__container-valid">
+      <svg
+        class="cancel__btn"
+        id="cancel__btn-valid"
+        style="cursor: pointer"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M7.75732 16.2426L16.2426 7.75736"
+          stroke="#1A1A1F"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.2426 16.2426L7.75732 7.75736"
+          stroke="#1A1A1F"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-        <path d="M32.0002 58.6667C46.6668 58.6667 58.6668 46.6667 58.6668 32C58.6668 17.3333 46.6668 5.33334 32.0002 5.33334C17.3335 5.33334 5.3335 17.3333 5.3335 32C5.3335 46.6667 17.3335 58.6667 32.0002 58.6667Z" fill="#14D81C"/>
-        <path d="M20.6665 32L28.2132 39.5467L43.3332 24.4533" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 64 64"
+        fill="none"
+      >
+        <path
+          d="M32.0002 58.6667C46.6668 58.6667 58.6668 46.6667 58.6668 32C58.6668 17.3333 46.6668 5.33334 32.0002 5.33334C17.3335 5.33334 5.3335 17.3333 5.3335 32C5.3335 46.6667 17.3335 58.6667 32.0002 58.6667Z"
+          fill="#14D81C"
+        />
+        <path
+          d="M20.6665 32L28.2132 39.5467L43.3332 24.4533"
+          stroke="white"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
       <h3>წარმატებული ავტორიზაცია</h3>
       <button id="confirm__btn">კარგი</button>
     </div>
     <!-- hero section -->
     <section class="hero-section">
-      <h1> ბლოგი </h1>
-      <img src="https://s3-alpha-sig.figma.com/img/2b6f/d5ba/b37701afb64104a602375882163c0a6e?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FajueSGsy9G3AP5qYaWlD7of9nj20jXa-Vznzg6YelxWIC3VmlCLpCL2x6DUmiCFVljO0ApsRwzN8Bkf3U9BFE6gbUe4R2E55n9pCgF962Jj0WVD19v1cPw0uyGcUkTN7xN6FZ3C6SGnj~0Xjn8tVTxQyTy3XnEHTNItOShrlWsw~9UUfUE4bydEiGo9qLRJS2HFde1eF05zHEgpJtVPH7bPHTnCKZSDbHrC2y5iWz6woqduLxN3Zt6YIyG39B3RMIIQxB17VGhuTFfwWNkQeudTaPYfvfUPWhqGWfDntIwUyeH8wMR6s0~duRxrwhDy9mzel13FPZMSmv4H3ZuapQ__" 
-           alt="Blog image">
+      <h1>ბლოგი</h1>
+      <img
+        src="https://s3-alpha-sig.figma.com/img/2b6f/d5ba/b37701afb64104a602375882163c0a6e?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FajueSGsy9G3AP5qYaWlD7of9nj20jXa-Vznzg6YelxWIC3VmlCLpCL2x6DUmiCFVljO0ApsRwzN8Bkf3U9BFE6gbUe4R2E55n9pCgF962Jj0WVD19v1cPw0uyGcUkTN7xN6FZ3C6SGnj~0Xjn8tVTxQyTy3XnEHTNItOShrlWsw~9UUfUE4bydEiGo9qLRJS2HFde1eF05zHEgpJtVPH7bPHTnCKZSDbHrC2y5iWz6woqduLxN3Zt6YIyG39B3RMIIQxB17VGhuTFfwWNkQeudTaPYfvfUPWhqGWfDntIwUyeH8wMR6s0~duRxrwhDy9mzel13FPZMSmv4H3ZuapQ__"
+        alt="Blog image"
+      />
     </section>
     <div class="navigation-container">
 
-        <button class="shop-category btn-common">მარკეტი</button>
+        <button class="shop-category btn-common" onclick="changeCategory(this)">მარკეტი</button>
       
       
-        <button class="app-category btn-common">აპლიკაცია</button>
+        <button class="app-category btn-common" onclick="changeCategory(this)">აპლიკაცია</button>
       
       
-        <button class="ai-category btn-common">ხელოვნური ინტელექტი</button>
+        <button class="ai-category btn-common" onclick="changeCategory(this)">ხელოვნური ინტელექტი</button>
       
       
-        <button class="ui-ux-category btn-common">UI-UX</button>
+        <button class="ui-ux-category btn-common" onclick="changeCategory(this)">UI-UX</button>
       
       
-        <button class="research-category btn-common">კვლევა</button>
+        <button class="research-category btn-common" onclick="changeCategory(this)">კვლევა</button>
       
       
-        <button class="figma-category btn-common">Figma</button>
+        <button class="figma-category btn-common" onclick="changeCategory(this)">Figma</button>
       
+    </div>
+
+    <div class="all-blogs">
+      <div class="first-blog">
+        <img 
+        src="https://s3-alpha-sig.figma.com/img/52fc/43dc/a34f1ce09dc28491de2466e89b81fb71?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Z2viS1u3z4MSi4v-gIAel51wkvnC~YOneM1XCAcnkHcn4Ex35jCeg0KVOBRukSbQ04eHaBukkw4v7BjX4UdZqH6WNYWlqjPK3dZDBW6huUt6LGVypk1ayTDOdDx8ntbNm9v6jI30eke4z1dmFAz2A1cCHJdCdKYYhiwtvjOAYAdv~fnspUqW~xm5gzEDr4YvG9g5itdoBJWk0ohuaVH6KYs652BXvsZnYcRyxI9VZ7up~tU1iOkDLk6LJI3K-VuybQlo5xHWeq5~7MBM19qLCVtK4QsXLtRqKQxtrZYznOg1PM1tQzn14785Fd1aqxkMXg6-z-zldvu-OzTLkGTa9g__" 
+        alt="Blog image">
+        <p class="author">ნია გოგსაძე</p>
+        <p class="date">02.11.2023</p>
+        <h2>EOMM-ის მრჩეველთა საბჭოს ნინო ეგაძე შეუერთდა</h2>
+        <div class="category-container">
+          <button class="shop-category btn-common">მარკეტი</button>
+          <button class="app-category btn-common">აპლიკაცია</button>
+          <button class="ai-category btn-common">ხელოვნური ინტელექტი</button>
+        </div>
+        <p class="description">6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური სიზუსტისთვის, ეს პროცესი...</p>
+        <div class="view-full">
+          <button>სრულად ნახვა</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5.93451 13.0052C5.64162 13.2981 5.64162 13.773 5.93451 14.0659C6.22741 14.3587 6.70228 14.3587 6.99517 14.0659L5.93451 13.0052ZM14.2859 6.46446C14.2859 6.05024 13.9501 5.71445 13.5359 5.71446L6.78591 5.71445C6.3717 5.71445 6.03591 6.05024 6.03591 6.46445C6.03591 6.87867 6.3717 7.21445 6.78591 7.21445H12.7859V13.2145C12.7859 13.6287 13.1217 13.9645 13.5359 13.9645C13.9501 13.9645 14.2859 13.6287 14.2859 13.2145L14.2859 6.46446ZM6.99517 14.0659L14.0662 6.99478L13.0056 5.93412L5.93451 13.0052L6.99517 14.0659Z" fill="#5D37F3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="first-blog">
+        <img 
+        src="https://s3-alpha-sig.figma.com/img/52fc/43dc/a34f1ce09dc28491de2466e89b81fb71?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Z2viS1u3z4MSi4v-gIAel51wkvnC~YOneM1XCAcnkHcn4Ex35jCeg0KVOBRukSbQ04eHaBukkw4v7BjX4UdZqH6WNYWlqjPK3dZDBW6huUt6LGVypk1ayTDOdDx8ntbNm9v6jI30eke4z1dmFAz2A1cCHJdCdKYYhiwtvjOAYAdv~fnspUqW~xm5gzEDr4YvG9g5itdoBJWk0ohuaVH6KYs652BXvsZnYcRyxI9VZ7up~tU1iOkDLk6LJI3K-VuybQlo5xHWeq5~7MBM19qLCVtK4QsXLtRqKQxtrZYznOg1PM1tQzn14785Fd1aqxkMXg6-z-zldvu-OzTLkGTa9g__" 
+        alt="Blog image">
+        <p class="author">ნია გოგსაძე</p>
+        <p class="date">02.11.2023</p>
+        <h2>EOMM-ის მრჩეველთა საბჭოს ნინო ეგაძე შეუერთდა</h2>
+        <div class="category-container">
+          <button class="shop-category btn-common">მარკეტი</button>
+          <button class="app-category btn-common">აპლიკაცია</button>
+          <button class="ai-category btn-common">ხელოვნური ინტელექტი</button>
+        </div>
+        <p class="description">6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური სიზუსტისთვის, ეს პროცესი...</p>
+        <div class="view-full">
+          <button>სრულად ნახვა</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5.93451 13.0052C5.64162 13.2981 5.64162 13.773 5.93451 14.0659C6.22741 14.3587 6.70228 14.3587 6.99517 14.0659L5.93451 13.0052ZM14.2859 6.46446C14.2859 6.05024 13.9501 5.71445 13.5359 5.71446L6.78591 5.71445C6.3717 5.71445 6.03591 6.05024 6.03591 6.46445C6.03591 6.87867 6.3717 7.21445 6.78591 7.21445H12.7859V13.2145C12.7859 13.6287 13.1217 13.9645 13.5359 13.9645C13.9501 13.9645 14.2859 13.6287 14.2859 13.2145L14.2859 6.46446ZM6.99517 14.0659L14.0662 6.99478L13.0056 5.93412L5.93451 13.0052L6.99517 14.0659Z" fill="#5D37F3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="first-blog">
+        <img 
+        src="https://s3-alpha-sig.figma.com/img/52fc/43dc/a34f1ce09dc28491de2466e89b81fb71?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Z2viS1u3z4MSi4v-gIAel51wkvnC~YOneM1XCAcnkHcn4Ex35jCeg0KVOBRukSbQ04eHaBukkw4v7BjX4UdZqH6WNYWlqjPK3dZDBW6huUt6LGVypk1ayTDOdDx8ntbNm9v6jI30eke4z1dmFAz2A1cCHJdCdKYYhiwtvjOAYAdv~fnspUqW~xm5gzEDr4YvG9g5itdoBJWk0ohuaVH6KYs652BXvsZnYcRyxI9VZ7up~tU1iOkDLk6LJI3K-VuybQlo5xHWeq5~7MBM19qLCVtK4QsXLtRqKQxtrZYznOg1PM1tQzn14785Fd1aqxkMXg6-z-zldvu-OzTLkGTa9g__" 
+        alt="Blog image">
+        <p class="author">ნია გოგსაძე</p>
+        <p class="date">02.11.2023</p>
+        <h2>EOMM-ის მრჩეველთა საბჭოს ნინო ეგაძე შეუერთდა</h2>
+        <div class="category-container">
+          <button class="shop-category btn-common">მარკეტი</button>
+          <button class="app-category btn-common">აპლიკაცია</button>
+          <button class="ai-category btn-common">ხელოვნური ინტელექტი</button>
+        </div>
+        <p class="description">6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური სიზუსტისთვის, ეს პროცესი...</p>
+        <div class="view-full">
+          <button>სრულად ნახვა</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5.93451 13.0052C5.64162 13.2981 5.64162 13.773 5.93451 14.0659C6.22741 14.3587 6.70228 14.3587 6.99517 14.0659L5.93451 13.0052ZM14.2859 6.46446C14.2859 6.05024 13.9501 5.71445 13.5359 5.71446L6.78591 5.71445C6.3717 5.71445 6.03591 6.05024 6.03591 6.46445C6.03591 6.87867 6.3717 7.21445 6.78591 7.21445H12.7859V13.2145C12.7859 13.6287 13.1217 13.9645 13.5359 13.9645C13.9501 13.9645 14.2859 13.6287 14.2859 13.2145L14.2859 6.46446ZM6.99517 14.0659L14.0662 6.99478L13.0056 5.93412L5.93451 13.0052L6.99517 14.0659Z" fill="#5D37F3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="first-blog">
+        <img 
+        src="https://s3-alpha-sig.figma.com/img/52fc/43dc/a34f1ce09dc28491de2466e89b81fb71?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Z2viS1u3z4MSi4v-gIAel51wkvnC~YOneM1XCAcnkHcn4Ex35jCeg0KVOBRukSbQ04eHaBukkw4v7BjX4UdZqH6WNYWlqjPK3dZDBW6huUt6LGVypk1ayTDOdDx8ntbNm9v6jI30eke4z1dmFAz2A1cCHJdCdKYYhiwtvjOAYAdv~fnspUqW~xm5gzEDr4YvG9g5itdoBJWk0ohuaVH6KYs652BXvsZnYcRyxI9VZ7up~tU1iOkDLk6LJI3K-VuybQlo5xHWeq5~7MBM19qLCVtK4QsXLtRqKQxtrZYznOg1PM1tQzn14785Fd1aqxkMXg6-z-zldvu-OzTLkGTa9g__" 
+        alt="Blog image">
+        <p class="author">ნია გოგსაძე</p>
+        <p class="date">02.11.2023</p>
+        <h2>EOMM-ის მრჩეველთა საბჭოს ნინო ეგაძე შეუერთდა</h2>
+        <div class="category-container">
+          <button class="shop-category btn-common">მარკეტი</button>
+          <button class="app-category btn-common">აპლიკაცია</button>
+          <button class="ai-category btn-common">ხელოვნური ინტელექტი</button>
+        </div>
+        <p class="description">6 თვის შემდეგ ყველის ბრმა დეგუსტაციის დროც დადგა. მაქსიმალური სიზუსტისთვის, ეს პროცესი...</p>
+        <div class="view-full">
+          <button>სრულად ნახვა</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5.93451 13.0052C5.64162 13.2981 5.64162 13.773 5.93451 14.0659C6.22741 14.3587 6.70228 14.3587 6.99517 14.0659L5.93451 13.0052ZM14.2859 6.46446C14.2859 6.05024 13.9501 5.71445 13.5359 5.71446L6.78591 5.71445C6.3717 5.71445 6.03591 6.05024 6.03591 6.46445C6.03591 6.87867 6.3717 7.21445 6.78591 7.21445H12.7859V13.2145C12.7859 13.6287 13.1217 13.9645 13.5359 13.9645C13.9501 13.9645 14.2859 13.6287 14.2859 13.2145L14.2859 6.46446ZM6.99517 14.0659L14.0662 6.99478L13.0056 5.93412L5.93451 13.0052L6.99517 14.0659Z" fill="#5D37F3"/>
+          </svg>
+        </div>
+      </div>
     </div>
   </body>
 </html>
