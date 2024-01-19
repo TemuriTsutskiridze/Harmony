@@ -17,12 +17,14 @@ function uploadImage() {
   // creating image url
   const file = inputFile.files[0];
   let imgUrl = undefined;
-  //   chechking again if there is no image file
+  //   chechking again if there is no image file 
   if (file && file.type.startsWith("image/")) {
     imgUrl = URL.createObjectURL(inputFile.files[0]);
   } else {
     return;
   }
+  // add in localstorage -
+
   //   deleting add image section
   imgView.style.display = "none";
   //   adding current photo section
@@ -37,6 +39,15 @@ function uploadImage() {
     deleteCurrentImage();
   });
 }
+// drag an image
+dropArea.addEventListener('dragover',(e)=>{
+  e.preventDefault();
+})
+dropArea.addEventListener('drop',(e)=>{
+  e.preventDefault();
+  inputFile.files = e.dataTransfer.files;
+  uploadImage();
+})
 
 // the first thing check token
 const checkToken = () => {
