@@ -162,17 +162,31 @@ body {
   border: 1px solid #E4E3EB;
   background-color: #FCFCFD;
 }
-/*  */
-.main__inputs p {
-  color: #85858d;
+.main__description textarea.active {
+  border: 1px solid #14D81C;
+  background-color: rgba(8, 210, 174, 0.08);
+}
+.main__description textarea.error {
+  border: 1px solid #ea1919;
+  background-color: rgba(250, 87, 87, 0.08);
+}
+.main__description p {
+  color: #85858D;
   font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 20px; 
 }
 /* control with javascript */
-.main__inputs p.active {
+.main__description p.active {
   color: #14d81c;
 }
+.main__description p.error {
+  color: #ea1919;
+}
+/* date and category */
+
+
+
 
 /* responsive mobile -> desktop */
 @media screen and (min-width: 768px) {

@@ -6,6 +6,23 @@ const addedImage = document.querySelector(".img-view__added");
 // author and blog name container
 const authorInput = document.getElementById("author");
 const blogNameInput = document.getElementById("blogName");
+const descriptionInput = document.getElementById("description");
+// category container
+
+const categoryInput = document.querySelectorAll(".item-container");
+const categoryOptions = document.querySelectorAll(".drawer li");
+
+
+// category section
+let selectedCategories = [];
+
+categoryOptions.forEach((option) => {
+  option.addEventListener('click', (e) => {
+    console.log(e);
+  });
+});
+
+
 
 // georgian alphabet for author
 const alphabet = [
@@ -130,6 +147,7 @@ const checkAuthorField = (e) => {
   }
 };
 const checkTitleField = (e) => {
+  console.log(categoryInput);
   const input = e.target.parentElement.querySelector("input");
   let inputValue = e.target.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
@@ -157,6 +175,35 @@ const checkTitleField = (e) => {
     input.classList.add("error");
   }
 };
+const checkDescriptionField = (e) => {
+  const textarea = e.target.parentElement.querySelector("textarea");
+  textValue = textarea.value.trim()
+  const errorMessage = e.target.parentElement.querySelector("p");
+  console.log(errorMessage);
+
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+
+  localStorage.setItem(
+    "userInfo",
+    JSON.stringify({ ...storedObj, description: textValue })
+  );
+  if (textValue.length >= 2) {
+    errorMessage.classList.remove("error");
+    errorMessage.classList.add("active");
+    textarea.classList.remove("error");
+    textarea.classList.add("active");
+  } else if (textValue === "") {
+    errorMessage.classList.remove("error");
+    errorMessage.classList.remove("active");
+    textarea.classList.remove("error");
+    textarea.classList.remove("active");
+  } else {
+    errorMessage.classList.remove("active");
+    errorMessage.classList.add("error");
+    textarea.classList.remove("active");
+    textarea.classList.add("error");
+  }
+};
 
 // author input field
 authorInput.addEventListener("input", (e) => {
@@ -165,7 +212,9 @@ authorInput.addEventListener("input", (e) => {
 blogNameInput.addEventListener("input", (e) => {
   checkTitleField(e);
 });
-
+descriptionInput.addEventListener('input',(e)=>{
+  checkDescriptionField(e)
+})
 // image drop containers
 inputFile.addEventListener("change", uploadImage);
 function deleteCurrentImage() {
@@ -216,9 +265,10 @@ const headerClick = () => {
   window.location.href = "../../index.html";
 };
 // the first thing check token
-const checkToken = () => {
-  const localToken = localStorage.getItem("user");
-  if (!localToken) {
+const checkToken = async() => {
+  const isToken = localStorage.getItem('token')
+  console.log(isToken);
+  if (isToken === null) {
     window.location.href = "../../index.html";
   } else {
     return;
@@ -230,6 +280,7 @@ const loadInputs = () => {
   if (storedField !== null) {
     authorInput.value = storedField.author;
     blogNameInput.value = storedField.title;
+    descriptionInput.value = storedField.description;
   } else {
     return;
   }
