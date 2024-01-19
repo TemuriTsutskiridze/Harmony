@@ -8,11 +8,13 @@
     <script src="addNewBlog.js" defer></script>
     <title>Redberry</title>
   </head>
-  <body>
+  <body onload="loadInputs()">
     <!-- add header section -->
     <header class="header">
       <img
         class="header__img"
+        style="cursor: pointer;"
+        onclick="headerClick()"
         src="https://s3-alpha-sig.figma.com/img/f69b/80be/31a111bebc15f4f9df757da172ce198d?Expires=1706486400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bG9wwP-DGzDOFXMn62An~vg~7DmeK3xRSv98MzLcYSrxx-K3J3l7GbTQClJyknyaRH4g3JAWz7xGfXJuCh3CXyq0K8oZ6DaE4xFclq89NQaan9EqOYSsVcDaEB~i93bK3EBShzLtYEP3fYhofaV8mX3KSaOS7TXbI8Uz9W0xGh4k3GwNkL8jvUcmdbfM0LW1SFnpxPbbJ7Cgu9ZWh4I~TwEAtRRhUzzLe5obC~O-uQ4W120B9Q~3iozO-ZhxLlwPda3-fRWwNOmqM7atipn3kstOfllho0W5QkK0zN1Y9BvIYpb2sDE-674~g4T6NMVjoDVBWUe-FwPX1Dp~1zuEyA__"
         alt="redberry-logo"
       />
@@ -20,30 +22,77 @@
 
     <!-- main title -->
     <!-- add input section -->
-    <main class="main"> 
+    <main class="main">
       <h2 class="main__title">ბლოგის დამატება</h2>
+      <div class="main__dropimg">
+        <p class="main__dropimg-title">ატვირთეთ ფოტო</p>
+        <label for="input-file" id="drop-area">
+          <input type="file" accept="image/*" id="input-file" hidden />
+          <div id="img-view">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+            >
+              <path
+                opacity="0.4"
+                d="M36.233 15.7333H3.33301V10.7C3.33301 6.63333 6.63301 3.33333 10.6997 3.33333H14.583C17.2997 3.33333 18.1497 4.21667 19.233 5.66667L21.5663 8.76667C22.083 9.45 22.1497 9.55 23.1163 9.55H27.7663C31.7163 9.53333 35.083 12.1333 36.233 15.7333Z"
+                fill="#5D37F3"
+              />
+              <path
+                d="M36.6497 18.0667C36.6163 17.25 36.483 16.4833 36.233 15.7333H3.33301V27.75C3.33301 32.6667 7.33301 36.6667 12.2497 36.6667H27.7497C32.6663 36.6667 36.6663 32.6667 36.6663 27.75V18.45C36.6663 18.3333 36.6663 18.1833 36.6497 18.0667ZM24.1663 27.0833H21.3497V30C21.3497 30.6833 20.783 31.25 20.0997 31.25C19.4163 31.25 18.8497 30.6833 18.8497 30V27.0833H15.833C15.1497 27.0833 14.583 26.5167 14.583 25.8333C14.583 25.15 15.1497 24.5833 15.833 24.5833H18.8497V21.6667C18.8497 20.9833 19.4163 20.4167 20.0997 20.4167C20.783 20.4167 21.3497 20.9833 21.3497 21.6667V24.5833H24.1663C24.8497 24.5833 25.4163 25.15 25.4163 25.8333C25.4163 26.5167 24.8497 27.0833 24.1663 27.0833Z"
+                fill="#5D37F3"
+              />
+            </svg>
+            <p>ჩააგდეთ ფაილი აქ ან <span>აირჩიეთ ფაილი</span></p>
+          </div>
+          <div class="img-view__added">
+            <img src="" alt="Blog image" />
+            <span>name</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7.75781 16.2426L16.2431 7.75736"
+                stroke="#1A1A1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16.2431 16.2426L7.75781 7.75736"
+                stroke="#1A1A1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </label>
+      </div>
 
-        <div class="main__dropimg">
-          <p class="main__dropimg-title">ატვირთეთ ფოტო</p>
-          <label for="input-file" id="drop-area">
-            <input type="file" accept="image/*" id="input-file" hidden>
-            <div id="img-view">
-              <svg  xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path opacity="0.4" d="M36.233 15.7333H3.33301V10.7C3.33301 6.63333 6.63301 3.33333 10.6997 3.33333H14.583C17.2997 3.33333 18.1497 4.21667 19.233 5.66667L21.5663 8.76667C22.083 9.45 22.1497 9.55 23.1163 9.55H27.7663C31.7163 9.53333 35.083 12.1333 36.233 15.7333Z" fill="#5D37F3"/>
-                <path d="M36.6497 18.0667C36.6163 17.25 36.483 16.4833 36.233 15.7333H3.33301V27.75C3.33301 32.6667 7.33301 36.6667 12.2497 36.6667H27.7497C32.6663 36.6667 36.6663 32.6667 36.6663 27.75V18.45C36.6663 18.3333 36.6663 18.1833 36.6497 18.0667ZM24.1663 27.0833H21.3497V30C21.3497 30.6833 20.783 31.25 20.0997 31.25C19.4163 31.25 18.8497 30.6833 18.8497 30V27.0833H15.833C15.1497 27.0833 14.583 26.5167 14.583 25.8333C14.583 25.15 15.1497 24.5833 15.833 24.5833H18.8497V21.6667C18.8497 20.9833 19.4163 20.4167 20.0997 20.4167C20.783 20.4167 21.3497 20.9833 21.3497 21.6667V24.5833H24.1663C24.8497 24.5833 25.4163 25.15 25.4163 25.8333C25.4163 26.5167 24.8497 27.0833 24.1663 27.0833Z" fill="#5D37F3"/>
-              </svg>
-              <p>ჩააგდეთ ფაილი აქ ან <span>აირჩიეთ ფაილი</span></p>
-            </div>
-            <div class="img-view__added">
-              <img src="" alt="Blog image">
-              <span>name</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M7.75781 16.2426L16.2431 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16.2431 16.2426L7.75781 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </label>
+      <div class="main__inputs">
+        <div class="main__inputs-first">
+          <label for="author">ავტორი *</label>
+          <input type="text" id="author" placeholder="შეიყვნეთ ავტორი" />
+          <ul>
+            <li class="author-symbol">მინიმუმ 4 სიმბოლო</li>
+            <li class="author-word">მინიმუმ ორი სიტყვა</li>
+            <li class="author-letter">მხოლოდ ქართული სიმბოლოები</li>
+          </ul>
         </div>
+        <div class="main__inputs-second">
+          <label for="blogName">სათური *</label>
+          <input type="text" id="blogName" placeholder="შეიყვნეთ სათაური" />
+          <p class="title-error">მინიმუმ 4 სიმბოლო</p>
+        </div>
+      </div>
     </main>
   </body>
 </html>
