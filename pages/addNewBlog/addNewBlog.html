@@ -103,7 +103,39 @@
       </div>
       <!-- date and category -->
 
-      <div class="date__category"></div>
+      <div class="date__category">
+        <div class="date__section">
+          <label for="date"> გამოქვეყნების თარიღი * </label>
+          <input type="date" id="date" />
+        </div>
+        <div class="category__section">
+          <label for="date__selected"> გამოქვეყნების თარიღი * </label>
+          <div class="category__field" id="category_selected">
+            <!-- post with javascript -->
+            <div class="category__items"></div>
+            <div class="category__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M16.6004 7.45825L11.1671 12.8916C10.5254 13.5333 9.47539 13.5333 8.83372 12.8916L3.40039 7.45825"
+                  stroke="#292D32"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+          <!-- add in javascript -->
+          <div class="categories"></div>
+        </div>
+      </div>
     </main>
   </body>
 </html>

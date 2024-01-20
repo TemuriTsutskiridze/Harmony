@@ -1,3 +1,134 @@
+// date containers
+const dateInput = document.getElementById("date");
+
+dateInput.addEventListener('change',(e)=>{
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+
+  localStorage.setItem(
+    "userInfo",
+    JSON.stringify({ ...storedObj, publish_date: e.target.value })
+  );
+})
+
+// category containers
+const selectedCategories = document.querySelector(".category__items");
+const categoryBtn = document.querySelector(".category__icon");
+const categoriesList = document.querySelector(".categories");
+// delete blog with buttoon
+async function deleteBlog(data) {
+  const categoryElement = document.getElementById(data);
+  if (categoryElement) {
+    categoryElement.remove();
+    const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+    let changedList = storedObj.category.filter(item => item.id !== parseInt(data))
+    localStorage.setItem(
+      "userInfo",
+      JSON.stringify({
+        ...storedObj,
+        category: changedList,
+      })
+    );
+  }
+}
+
+// add blogs in html element (for onload)
+function blogHTML(data) {
+  selectedCategories.innerHTML += `
+    <div class="category__item" id="${data.id}" style="background-color:  ${data.background_color}; color: #fff">
+    ${data.title}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      onclick="deleteBlog('${data.id}')"
+    >
+      <path
+        d="M5.17188 10.8284L10.8287 5.17151"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10.8287 10.8285L5.17188 5.17163"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+    `;
+}
+
+// add blogs in html (without onload)
+async function addBlog(id) {
+  try {
+    const resp = await fetch(
+      `https://george.pythonanywhere.com/api/categories`
+    );
+    const data = await resp.json();
+    let filtereData = data.filter((item) => item.id === parseInt(id, 10));
+    const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+
+    localStorage.setItem(
+      "userInfo",
+      JSON.stringify({
+        ...storedObj,
+        category: [...(storedObj.category || []), filtereData[0]],
+      })
+    );
+
+    // add in html
+    blogHTML(filtereData[0])
+  } catch (error) {
+    alert.error("Error fetching data:", error);
+  }
+}
+
+// create  - DOM list box
+function createBlogList(data) {
+  for (let key in data) {
+    const blogId = data[key].id;
+    categoriesList.innerHTML += `
+      <div class="category__toggle"
+        style="background-color:${data[key].background_color}; color: #fff;" 
+        id="${data[key].id}" onclick="addBlog('${blogId}')">
+        ${data[key].title}
+      </div>
+    `;
+  }
+}
+
+// get data from backend and -> DOM
+async function getCategories() {
+  try {
+    const resp = await fetch(
+      `https://george.pythonanywhere.com/api/categories/`
+    );
+    const data = await resp.json();
+
+    createBlogList(data);
+    if (!resp.ok) throw new Error("something went wrong");
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+let dropDown = false;
+categoryBtn.addEventListener("click", () => {
+  dropDown = !dropDown;
+  if (dropDown) {
+    categoriesList.style.display = "flex";
+    getCategories();
+  } else {
+    categoriesList.innerHTML = ``;
+    categoriesList.style.display = "none";
+  }
+});
+
 // image drop containers
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("input-file");
@@ -7,22 +138,6 @@ const addedImage = document.querySelector(".img-view__added");
 const authorInput = document.getElementById("author");
 const blogNameInput = document.getElementById("blogName");
 const descriptionInput = document.getElementById("description");
-// category container
-
-const categoryInput = document.querySelectorAll(".item-container");
-const categoryOptions = document.querySelectorAll(".drawer li");
-
-
-// category section
-let selectedCategories = [];
-
-categoryOptions.forEach((option) => {
-  option.addEventListener('click', (e) => {
-    console.log(e);
-  });
-});
-
-
 
 // georgian alphabet for author
 const alphabet = [
@@ -147,7 +262,6 @@ const checkAuthorField = (e) => {
   }
 };
 const checkTitleField = (e) => {
-  console.log(categoryInput);
   const input = e.target.parentElement.querySelector("input");
   let inputValue = e.target.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
@@ -177,9 +291,8 @@ const checkTitleField = (e) => {
 };
 const checkDescriptionField = (e) => {
   const textarea = e.target.parentElement.querySelector("textarea");
-  textValue = textarea.value.trim()
+  textValue = textarea.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
-  console.log(errorMessage);
 
   const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
 
@@ -212,9 +325,9 @@ authorInput.addEventListener("input", (e) => {
 blogNameInput.addEventListener("input", (e) => {
   checkTitleField(e);
 });
-descriptionInput.addEventListener('input',(e)=>{
-  checkDescriptionField(e)
-})
+descriptionInput.addEventListener("input", (e) => {
+  checkDescriptionField(e);
+});
 // image drop containers
 inputFile.addEventListener("change", uploadImage);
 function deleteCurrentImage() {
@@ -265,9 +378,8 @@ const headerClick = () => {
   window.location.href = "../../index.html";
 };
 // the first thing check token
-const checkToken = async() => {
-  const isToken = localStorage.getItem('token')
-  console.log(isToken);
+const checkToken = async () => {
+  const isToken = localStorage.getItem("token");
   if (isToken === null) {
     window.location.href = "../../index.html";
   } else {
@@ -281,6 +393,14 @@ const loadInputs = () => {
     authorInput.value = storedField.author;
     blogNameInput.value = storedField.title;
     descriptionInput.value = storedField.description;
+    dateInput.value = storedField.publish_date;
+    for (
+      let i = 0;
+      i < storedField.category.length;
+      i++
+    ) {
+      blogHTML(storedField.category[i]);
+    }
   } else {
     return;
   }
