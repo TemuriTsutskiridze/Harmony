@@ -8,6 +8,8 @@ const cancelBtnValid = document.getElementById("cancel__btn-valid");
 const signInBtn = document.getElementById("signin__btn");
 const confirmBtn = document.getElementById("confirm__btn");
 const headerErrorText = document.getElementById("header__error");
+// user input
+const userInput = document.getElementById("user__email");
 
 let userLoged = true;
 // login function
@@ -22,33 +24,53 @@ const cancelHeaderContainer = () => {
   headerContainer.classList.remove("active");
   headerContainerValid.classList.remove("active");
 };
+//
 
 // checking validation
-const checkValidation = () => {
+const checkValidation = async () => {
+  headerErrorText.classList.remove("active");
   try {
-    if (userLoged) {
-      localStorage.setItem("user", true);
+    const response = await fetch(
+      "https://george.pythonanywhere.com/api/login/",
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: `${userInput.value}`,
+        }),
+      }
+    );
+    if (!response.ok) throw new Error("something went wrong");
+    const data = await response.json();
+    localStorage.setItem("token", data.token);
+    const checkToken = localStorage.getItem('token');
+    if(checkToken){
       headerContainerValid.classList.add("active");
       headerContainer.classList.remove("active");
       headerBtn.style.display = "none";
       blogBtn.style.display = "block";
-    } else {
-      throw new Error("ელ-ფოსტა არ მოიძებნა");
     }
   } catch (error) {
     headerErrorText.classList.add("active");
   }
+
+
 };
 
 // automatic load
 const automaticLoad = () => {
-  let localUser = localStorage.getItem("user");
+  let localUser = localStorage.getItem("token");
   if (localUser !== null) {
     headerBtn.style.display = "none";
     blogBtn.style.display = "block";
+    blogBtn.addEventListener('click',()=>{
+      window.location.href = './pages/addNewBlog/addNewBlog.html'
+    })
   }
 };
-
 
 // 1st click
 headerBtn.addEventListener("click", headerBtnClick);
@@ -67,13 +89,13 @@ automaticLoad();
 
 // // Handles the click event on category buttons
 function changeCategory(button) {
-
+  
   button.classList.toggle('active-category');
 
-  const buttons = document.querySelectorAll('.btn-common');
-  buttons.forEach(btn => {
-    if (btn !== button && !btn.classList.contains('active-category')) {
-      btn.classList.remove('active-category');
+  const buttons = document.querySelectorAll(".btn-common");
+  buttons.forEach((btn) => {
+    if (btn !== button && !btn.classList.contains("active-category")) {
+      btn.classList.remove("active-category");
     }
   });
 }
