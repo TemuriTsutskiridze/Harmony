@@ -67,7 +67,7 @@ automaticLoad();
 
 // // Handles the click event on category buttons
 function changeCategory(button) {
-  
+
   button.classList.toggle('active-category');
 
   const buttons = document.querySelectorAll('.btn-common');
