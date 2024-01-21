@@ -52,6 +52,9 @@ const checkValidation = async () => {
       headerContainer.classList.remove("active");
       headerBtn.style.display = "none";
       blogBtn.style.display = "block";
+      blogBtn.addEventListener('click',()=>{
+        window.location.href = './pages/addNewBlog/addNewBlog.html'
+      })
     }
   } catch (error) {
     headerErrorText.classList.add("active");
