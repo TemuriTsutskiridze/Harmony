@@ -128,10 +128,10 @@ body {
   color: #ea1919;
 }
 
-.main__inputs p.active {
+p.active {
   color: #14d81c;
 }
-.main__inputs p.error {
+p.error {
   color: #ea1919;
 }
 .main__inputs input.error {
@@ -215,7 +215,7 @@ body {
   outline: none;
 }
 /* category */
-.category__section{
+.category__section {
   width: 100%;
 }
 .category__section label {
@@ -232,7 +232,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #F7F7FF;
+  background-color: #f7f7ff;
   border-radius: 12px;
   border: 1px solid #e4e3eb;
   position: relative;
@@ -311,10 +311,68 @@ body {
   /* turn of */
   display: none;
 }
-.category__toggle{
+.category__toggle {
   padding: 8px 16px;
   border-radius: 30px;
   cursor: pointer;
+}
+/* mail section */
+.main__mail {
+  width: 100%;
+}
+.main__mail label {
+  margin-top: 10px;
+  display: block;
+  color: #1a1a1f;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.main__mail input {
+  margin: 8px 0;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e4e3eb;
+  background-color: #fcfcfd;
+  outline: none;
+}
+.main__mail input:focus {
+  border: 1.5px solid #5d37f3;
+}
+
+.main__mail p {
+  gap: 8px;
+  color: #ea1919;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  display: none;
+}
+.main__mail p.active {
+  display: flex;
+}
+/* submit  */
+.submit__button {
+  text-align: right;
+  margin: 40px 0;
+}
+
+/* Optional: To make the button inline-block for better control */
+.submit__button button {
+  cursor: pointer;
+  width: 288px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #e4e3eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.submit__button button.active {
+  background-color: #5D37F3;
 }
 /* responsive mobile -> desktop */
 @media screen and (min-width: 768px) {
@@ -335,12 +393,7 @@ body {
   .main__inputs input {
     width: 100%;
   }
-  .main__inputs-second .title-error {
-    color: #85858d;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 20px;
-  }
+
   /* date and category responsive */
   .date__category {
     flex-direction: row;
@@ -355,8 +408,11 @@ body {
   .date__category .categories {
     top: 74px !important;
     left: unset;
-    right: 0 !important; 
+    right: 0 !important;
     width: 48% !important;
   }
-
+  /* mail section */
+  .main__mail {
+    width: calc(50% - 10px);
+  }
 }

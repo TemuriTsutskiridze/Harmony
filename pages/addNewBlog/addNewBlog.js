@@ -1,14 +1,53 @@
+// check button
+
+// mail containers
+const mailInput = document.getElementById("mail");
+const checkMail = document.querySelector(".mail__error");
+mailInput.addEventListener("input", (e) => {
+  checkBtn();
+  let inputValue = e.target.value;
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+  if (inputValue === "") {
+    checkMail.classList.remove("active");
+  }
+
+  if (inputValue.length >= 3) {
+    // Get the last 12 letters using substring
+    let checkValid = inputValue.substring(inputValue.length - 12);
+    if (checkValid === "@redberry.ge") {
+      checkMail.classList.remove("active");
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          ...storedObj,
+          email: inputValue,
+        })
+      );
+    } else {
+      checkMail.classList.add("active");
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          ...storedObj,
+          email: null,
+        })
+      );
+    }
+  }
+});
+
 // date containers
 const dateInput = document.getElementById("date");
 
-dateInput.addEventListener('change',(e)=>{
+dateInput.addEventListener("change", (e) => {
+  checkBtn()
   const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
 
   localStorage.setItem(
     "userInfo",
     JSON.stringify({ ...storedObj, publish_date: e.target.value })
   );
-})
+});
 
 // category containers
 const selectedCategories = document.querySelector(".category__items");
@@ -16,11 +55,14 @@ const categoryBtn = document.querySelector(".category__icon");
 const categoriesList = document.querySelector(".categories");
 // delete blog with buttoon
 async function deleteBlog(data) {
+ checkBtn()
   const categoryElement = document.getElementById(data);
   if (categoryElement) {
     categoryElement.remove();
     const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-    let changedList = storedObj.category.filter(item => item.id !== parseInt(data))
+    let changedList = storedObj.category.filter(
+      (item) => item !== parseInt(data)
+    );
     localStorage.setItem(
       "userInfo",
       JSON.stringify({
@@ -32,17 +74,22 @@ async function deleteBlog(data) {
 }
 
 // add blogs in html element (for onload)
-function blogHTML(data) {
+async function fetchBlogs(id) {
+
+  const resp = await fetch(`https://george.pythonanywhere.com/api/categories/`);
+  const data = await resp.json();
+  let filteredData = data.filter((item) => item.id === id);
+  let blog = filteredData[0];
   selectedCategories.innerHTML += `
-    <div class="category__item" id="${data.id}" style="background-color:  ${data.background_color}; color: #fff">
-    ${data.title}
+    <div class="category__item" id="${blog.id}" style="background-color:  ${blog.background_color}; color: #fff">
+    ${blog.title}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
       viewBox="0 0 16 16"
       fill="none"
-      onclick="deleteBlog('${data.id}')"
+      onclick="deleteBlog('${blog.id}')"
     >
       <path
         d="M5.17188 10.8284L10.8287 5.17151"
@@ -62,9 +109,13 @@ function blogHTML(data) {
   </div>
     `;
 }
+function blogHTML(id) {
+  fetchBlogs(id);
+}
 
 // add blogs in html (without onload)
 async function addBlog(id) {
+  checkBtn()
   try {
     const resp = await fetch(
       `https://george.pythonanywhere.com/api/categories`
@@ -72,17 +123,16 @@ async function addBlog(id) {
     const data = await resp.json();
     let filtereData = data.filter((item) => item.id === parseInt(id, 10));
     const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-
     localStorage.setItem(
       "userInfo",
       JSON.stringify({
         ...storedObj,
-        category: [...(storedObj.category || []), filtereData[0]],
+        category: [...(storedObj.category || []), filtereData[0].id],
       })
     );
 
     // add in html
-    blogHTML(filtereData[0])
+    blogHTML(filtereData[0].id);
   } catch (error) {
     alert.error("Error fetching data:", error);
   }
@@ -265,7 +315,6 @@ const checkTitleField = (e) => {
   const input = e.target.parentElement.querySelector("input");
   let inputValue = e.target.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
-
   const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
 
   localStorage.setItem(
@@ -320,12 +369,15 @@ const checkDescriptionField = (e) => {
 
 // author input field
 authorInput.addEventListener("input", (e) => {
+  checkBtn();
   checkAuthorField(e);
 });
 blogNameInput.addEventListener("input", (e) => {
+  checkBtn();
   checkTitleField(e);
 });
 descriptionInput.addEventListener("input", (e) => {
+  checkBtn();
   checkDescriptionField(e);
 });
 // image drop containers
@@ -335,16 +387,29 @@ function deleteCurrentImage() {
   imgView.style.display = "block";
   //   deleting current photo section
   addedImage.style.display = "none";
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+  localStorage.setItem(
+    "userInfo",
+    JSON.stringify({ ...storedObj, image: null })
+  );
   //   if there is an image in localstorage we need do delete from it
 }
 
 function uploadImage() {
+
   // creating image url
   const file = inputFile.files[0];
   let imgUrl = undefined;
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+
   //   chechking again if there is no image file
   if (file && file.type.startsWith("image/")) {
+    checkBtn();
     imgUrl = URL.createObjectURL(inputFile.files[0]);
+    localStorage.setItem(
+      "userInfo",
+      JSON.stringify({ ...storedObj, image: imgUrl })
+    );
   } else {
     return;
   }
@@ -373,6 +438,70 @@ dropArea.addEventListener("drop", (e) => {
   uploadImage();
 });
 
+// submit button
+
+const submitBtn = document.getElementById("submit");
+
+function checkBtn() {
+  const data = JSON.parse(localStorage.getItem("userInfo")) || {};
+  if (
+    data.author &&
+    data.author !== "" &&
+    Array.isArray(data.category) && data.category.length === 0 &&
+    data.description &&
+    data.description !== "" &&
+    data.publish_date &&
+    data.publish_date !== null &&
+    data.title &&
+    data.title !== "" &&
+    data.image && data.image !== null &&
+    data.email && data.email !== null
+
+  ) {
+    console.log(data);
+    submitBtn.classList.add("active");
+  } else {
+    submitBtn.classList.remove("active");
+  }
+}
+
+submitBtn.addEventListener("click", async () => {
+  try {
+    // Retrieve data from local storage
+    const data = localStorage.getItem("userInfo");
+
+    // Retrieve CSRF token from local storage
+    const csrfToken = localStorage.getItem("token");
+    const resp = await fetch(
+      "https://george.pythonanywhere.com/api/blogs/create/",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken,
+        },
+        body: JSON.stringify({
+          keyForData: data, // Adjust the key as per your backend's expectations
+        }),
+      }
+    );
+
+    // Check if the response status is 401 (Unauthorized)
+    if (resp.status === 401) {
+      throw new Error("Unauthorized: Check CSRF token.");
+    }
+
+    // Log the actual response data
+    const responseData = await resp.json();
+
+    // Handle the response or update the UI accordingly
+    // ...
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
 // header navigation system
 const headerClick = () => {
   window.location.href = "../../index.html";
@@ -394,11 +523,11 @@ const loadInputs = () => {
     blogNameInput.value = storedField.title;
     descriptionInput.value = storedField.description;
     dateInput.value = storedField.publish_date;
-    for (
-      let i = 0;
-      i < storedField.category.length;
-      i++
-    ) {
+    addedImage.querySelector("img").src = `${storedField.image}`;
+    if (storedField.email !== null) {
+      mailInput.value = storedField.email;
+    }
+    for (let i = 0; i < storedField.category.length; i++) {
       blogHTML(storedField.category[i]);
     }
   } else {
