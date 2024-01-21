@@ -127,11 +127,16 @@ body {
 .main__inputs ul li.error {
   color: #ea1919;
 }
-
-p.active {
+.main__inputs p{
+  color: #85858d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.main__inputs p.active {
   color: #14d81c;
 }
-p.error {
+.main__inputs p.error {
   color: #ea1919;
 }
 .main__inputs input.error {

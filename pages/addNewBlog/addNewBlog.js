@@ -1,53 +1,40 @@
 // check button
+let isAuthor = false;
+let isTitle = false;
+let isDescription = false;
+let isDate = false;
+let isCategory = false;
+let isEmail = false;
+const submitBtn = document.getElementById("submit");
 
+function checkBtn() {
+  const data = JSON.parse(localStorage.getItem("userInfo")) || {};
+  if (
+    data.author &&
+    data.author !== "" &&
+    Array.isArray(data.categories) &&
+    data.categories.length !== 0 &&
+    data.description &&
+    data.description !== "" &&
+    data.publish_date &&
+    data.publish_date !== null &&
+    data.title &&
+    data.title !== "" &&
+    data.image &&
+    data.image !== null &&
+    data.email &&
+    data.email !== null
+  ) {
+    submitBtn.classList.add("active");
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.classList.remove("active");
+    submitBtn.disabled = true;
+  }
+}
 // mail containers
-const mailInput = document.getElementById("mail");
-const checkMail = document.querySelector(".mail__error");
-mailInput.addEventListener("input", (e) => {
-  checkBtn();
-  let inputValue = e.target.value;
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-  if (inputValue === "") {
-    checkMail.classList.remove("active");
-  }
-
-  if (inputValue.length >= 3) {
-    // Get the last 12 letters using substring
-    let checkValid = inputValue.substring(inputValue.length - 12);
-    if (checkValid === "@redberry.ge") {
-      checkMail.classList.remove("active");
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          ...storedObj,
-          email: inputValue,
-        })
-      );
-    } else {
-      checkMail.classList.add("active");
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          ...storedObj,
-          email: null,
-        })
-      );
-    }
-  }
-});
 
 // date containers
-const dateInput = document.getElementById("date");
-
-dateInput.addEventListener("change", (e) => {
-  checkBtn()
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({ ...storedObj, publish_date: e.target.value })
-  );
-});
 
 // category containers
 const selectedCategories = document.querySelector(".category__items");
@@ -55,27 +42,28 @@ const categoryBtn = document.querySelector(".category__icon");
 const categoriesList = document.querySelector(".categories");
 // delete blog with buttoon
 async function deleteBlog(data) {
- checkBtn()
   const categoryElement = document.getElementById(data);
   if (categoryElement) {
     categoryElement.remove();
     const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-    let changedList = storedObj.category.filter(
+    let changedList = storedObj.categories.filter(
       (item) => item !== parseInt(data)
     );
     localStorage.setItem(
       "userInfo",
       JSON.stringify({
         ...storedObj,
-        category: changedList,
+        categories: changedList,
       })
     );
+    checkBtn();
+  } else {
+    return;
   }
 }
 
 // add blogs in html element (for onload)
 async function fetchBlogs(id) {
-
   const resp = await fetch(`https://george.pythonanywhere.com/api/categories/`);
   const data = await resp.json();
   let filteredData = data.filter((item) => item.id === id);
@@ -115,7 +103,6 @@ function blogHTML(id) {
 
 // add blogs in html (without onload)
 async function addBlog(id) {
-  checkBtn()
   try {
     const resp = await fetch(
       `https://george.pythonanywhere.com/api/categories`
@@ -127,12 +114,12 @@ async function addBlog(id) {
       "userInfo",
       JSON.stringify({
         ...storedObj,
-        category: [...(storedObj.category || []), filtereData[0].id],
+        categories: [...(storedObj.categories || []), filtereData[0].id],
       })
     );
-
     // add in html
     blogHTML(filtereData[0].id);
+    checkBtn();
   } catch (error) {
     alert.error("Error fetching data:", error);
   }
@@ -179,15 +166,13 @@ categoryBtn.addEventListener("click", () => {
   }
 });
 
-// image drop containers
-const dropArea = document.getElementById("drop-area");
-const inputFile = document.getElementById("input-file");
-const imgView = document.getElementById("img-view");
-const addedImage = document.querySelector(".img-view__added");
-// author and blog name container
+// all input section
 const authorInput = document.getElementById("author");
 const blogNameInput = document.getElementById("blogName");
 const descriptionInput = document.getElementById("description");
+const mailInput = document.getElementById("mail");
+const checkMail = document.querySelector(".mail__error");
+const dateInput = document.getElementById("date");
 
 // georgian alphabet for author
 const alphabet = [
@@ -240,12 +225,7 @@ const checkAuthorField = (e) => {
   let inputValue = e.target.value.trim();
   let words = inputValue.split(" ");
 
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({ ...storedObj, author: inputValue })
-  );
+  setLocal("author", inputValue);
 
   let isFirsEl = false;
   let issecondEl = false;
@@ -315,12 +295,7 @@ const checkTitleField = (e) => {
   const input = e.target.parentElement.querySelector("input");
   let inputValue = e.target.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({ ...storedObj, title: inputValue })
-  );
+  setLocal("title", inputValue);
   if (inputValue.length >= 4) {
     errorMessage.classList.remove("error");
     errorMessage.classList.add("active");
@@ -342,13 +317,7 @@ const checkDescriptionField = (e) => {
   const textarea = e.target.parentElement.querySelector("textarea");
   textValue = textarea.value.trim();
   const errorMessage = e.target.parentElement.querySelector("p");
-
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({ ...storedObj, description: textValue })
-  );
+  setLocal("description", textValue);
   if (textValue.length >= 2) {
     errorMessage.classList.remove("error");
     errorMessage.classList.add("active");
@@ -366,37 +335,68 @@ const checkDescriptionField = (e) => {
     textarea.classList.add("error");
   }
 };
+const checkEmailField = (e) => {
+  let inputValue = e.target.value;
+  if (inputValue === "") {
+    checkMail.classList.remove("active");
+  }
+
+  if (inputValue.length >= 13) {
+    // Get the last 12 letters using substring
+    let checkValid = inputValue.substring(inputValue.length - 12);
+    if (checkValid === "@redberry.ge") {
+      checkMail.classList.remove("active");
+      setLocal("email", inputValue);
+    } else {
+      checkMail.classList.add("active");
+      setLocal("email", null);
+    }
+  }
+};
 
 // author input field
 authorInput.addEventListener("input", (e) => {
-  checkBtn();
   checkAuthorField(e);
+  checkBtn();
 });
 blogNameInput.addEventListener("input", (e) => {
-  checkBtn();
   checkTitleField(e);
+  checkBtn();
 });
 descriptionInput.addEventListener("input", (e) => {
-  checkBtn();
   checkDescriptionField(e);
+  checkBtn();
 });
 // image drop containers
-inputFile.addEventListener("change", uploadImage);
+
+mailInput.addEventListener("input", (e) => {
+  checkEmailField(e);
+  checkBtn();
+});
+dateInput.addEventListener("change", (e) => {
+  setLocal("publish_date", e.target.value);
+  checkBtn();
+});
+// image drop containers
+const dropArea = document.getElementById("drop-area");
+const inputFile = document.getElementById("input-file");
+const imgView = document.getElementById("img-view");
+const addedImage = document.querySelector(".img-view__added");
+inputFile.addEventListener("change", () => {
+  uploadImage();
+  checkBtn();
+});
+// end of inputs
 function deleteCurrentImage() {
   //   adding add image section
   imgView.style.display = "block";
   //   deleting current photo section
   addedImage.style.display = "none";
-  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
-  localStorage.setItem(
-    "userInfo",
-    JSON.stringify({ ...storedObj, image: null })
-  );
-  //   if there is an image in localstorage we need do delete from it
+
+  setLocal("image", null);
 }
 
 function uploadImage() {
-
   // creating image url
   const file = inputFile.files[0];
   let imgUrl = undefined;
@@ -404,7 +404,6 @@ function uploadImage() {
 
   //   chechking again if there is no image file
   if (file && file.type.startsWith("image/")) {
-    checkBtn();
     imgUrl = URL.createObjectURL(inputFile.files[0]);
     localStorage.setItem(
       "userInfo",
@@ -426,6 +425,7 @@ function uploadImage() {
   svgElement.addEventListener("click", (e) => {
     e.preventDefault();
     deleteCurrentImage();
+    checkBtn();
   });
 }
 // drag an image
@@ -437,38 +437,19 @@ dropArea.addEventListener("drop", (e) => {
   inputFile.files = e.dataTransfer.files;
   uploadImage();
 });
-
-// submit button
-
-const submitBtn = document.getElementById("submit");
-
-function checkBtn() {
-  const data = JSON.parse(localStorage.getItem("userInfo")) || {};
-  if (
-    data.author &&
-    data.author !== "" &&
-    Array.isArray(data.category) && data.category.length === 0 &&
-    data.description &&
-    data.description !== "" &&
-    data.publish_date &&
-    data.publish_date !== null &&
-    data.title &&
-    data.title !== "" &&
-    data.image && data.image !== null &&
-    data.email && data.email !== null
-
-  ) {
-    console.log(data);
-    submitBtn.classList.add("active");
-  } else {
-    submitBtn.classList.remove("active");
-  }
+// set local function
+function setLocal(key, value) {
+  const storedObj = JSON.parse(localStorage.getItem("userInfo")) || {};
+  localStorage.setItem(
+    "userInfo",
+    JSON.stringify({ ...storedObj, [key]: value })
+  );
 }
 
+// POST blog
 submitBtn.addEventListener("click", async () => {
+  const data = JSON.parse(localStorage.getItem("userInfo")) || null;
   try {
-    // Retrieve data from local storage
-    const data = localStorage.getItem("userInfo");
 
     // Retrieve CSRF token from local storage
     const csrfToken = localStorage.getItem("token");
@@ -479,11 +460,9 @@ submitBtn.addEventListener("click", async () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "X-CSRFToken": csrfToken,
+          "Authorization": `Token ${csrfToken}`,
         },
-        body: JSON.stringify({
-          keyForData: data, // Adjust the key as per your backend's expectations
-        }),
+        body: JSON.stringify(data),
       }
     );
 
@@ -494,9 +473,9 @@ submitBtn.addEventListener("click", async () => {
 
     // Log the actual response data
     const responseData = await resp.json();
-
-    // Handle the response or update the UI accordingly
-    // ...
+    console.log(responseData);
+    localStorage.removeItem('userInfo')
+    location.reload();
   } catch (error) {
     alert(error.message);
   }
@@ -519,17 +498,29 @@ const checkToken = async () => {
 const loadInputs = () => {
   const storedField = JSON.parse(localStorage.getItem("userInfo")) || null;
   if (storedField !== null) {
-    authorInput.value = storedField.author;
-    blogNameInput.value = storedField.title;
-    descriptionInput.value = storedField.description;
-    dateInput.value = storedField.publish_date;
-    addedImage.querySelector("img").src = `${storedField.image}`;
-    if (storedField.email !== null) {
+    if (storedField.author !== undefined) {
+      authorInput.value = storedField.author;
+    }
+    if (storedField.title !== undefined) {
+      blogNameInput.value = storedField.title;
+    }
+    if (storedField.description !== undefined) {
+      descriptionInput.value = storedField.description;
+    }
+    if (storedField.publish_date !== undefined) {
+      dateInput.value = storedField.publish_date;
+    }
+    if (storedField.email !== null && storedField.email !== undefined) {
       mailInput.value = storedField.email;
     }
-    for (let i = 0; i < storedField.category.length; i++) {
-      blogHTML(storedField.category[i]);
+    if (storedField.categories) {
+      for (let i = 0; i < storedField.categories.length; i++) {
+        blogHTML(storedField.categories[i]);
+      }
     }
+
+    setLocal('image', null)
+    checkBtn();
   } else {
     return;
   }
