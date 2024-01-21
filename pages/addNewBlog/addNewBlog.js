@@ -279,16 +279,13 @@ const checkAuthorField = (e) => {
     isTwoLetter = false;
   }
 
-  // add in object (for backend)
+  
   if (isFirsEl && issecondEl && isThirdEl) {
     input.classList.remove("error");
     input.classList.add("active");
-    return true;
   } else {
     input.classList.add("error");
     input.classList.remove("active");
-
-    return false;
   }
 };
 const checkTitleField = (e) => {
