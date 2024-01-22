@@ -477,7 +477,10 @@ submitBtn.addEventListener("click", async () => {
     alert(error.message);
   }
 });
-
+const backBtn = document.querySelector('.back__btn')
+backBtn.addEventListener('click',()=>{
+  window.location.href = '../../index.html'
+})
 // header navigation system
 const headerClick = () => {
   window.location.href = "../../index.html";

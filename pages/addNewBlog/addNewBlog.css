@@ -379,6 +379,14 @@ body {
 .submit__button button.active {
   background-color: #5D37F3;
 }
+
+/* back button */
+.back__btn{
+  cursor: pointer;
+  position: absolute;
+  top: 76px;
+  right: 16px;
+}
 /* responsive mobile -> desktop */
 @media screen and (min-width: 768px) {
   .main {
@@ -419,5 +427,10 @@ body {
   /* mail section */
   .main__mail {
     width: calc(50% - 10px);
+  }
+  .back__btn{
+    position: absolute;
+    top: 76px;
+    left: 76px;
   }
 }
