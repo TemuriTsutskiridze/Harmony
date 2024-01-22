@@ -70,7 +70,7 @@ body {
   gap: 30px;
   align-items: center;
   justify-content: flex-start;
-  overflow-x: hidden; /* Enable horizontal scrolling */
+  overflow-x: scroll; /* Enable horizontal scrolling */
   overflow-y: hidden; /* Disable vertical scrolling */
   padding-bottom: 20px; /* Add some padding to the bottom to prevent cut-off shadow */
 }
