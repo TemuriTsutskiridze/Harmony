@@ -64,17 +64,23 @@ body {
   margin: 40px 0 40px 0px;
 }
 .blog__similar {
-  width: 70%;
+  width: 60%;
   margin: auto;
   display: flex;
   gap: 30px;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  overflow-x: hidden; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Disable vertical scrolling */
+  padding-bottom: 20px; /* Add some padding to the bottom to prevent cut-off shadow */
 }
 
 .similar__cards {
   width: 408px;
+  flex: 0 0 auto; /* Ensure the item doesn't grow or shrink */
+  margin-right: 0px; /* Add some space between cards */
+  /* scroll with js */
+  /* transform: translateX(-360px); */
 }
 .similar__cards img {
   width: 100%;
