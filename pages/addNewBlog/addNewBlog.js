@@ -404,7 +404,7 @@ function uploadImage() {
     imgUrl = URL.createObjectURL(inputFile.files[0]);
     localStorage.setItem(
       "userInfo",
-      JSON.stringify({ ...storedObj, image: imgUrl })
+      JSON.stringify({ ...storedObj, image: imgUrl.substring(5) })
     );
   } else {
     return;
@@ -462,15 +462,20 @@ submitBtn.addEventListener("click", async () => {
         body: JSON.stringify(data),
       }
     );
-
+    
     // Check if the response status is 401 (Unauthorized)
     if (resp.status === 401) {
       throw new Error("Unauthorized: Check CSRF token.");
     }
-
+    if(!resp.ok){
+        throw new Error('something went wrong');
+      }
+      const responseData = await resp.json();
     // Log the actual response data
-    const responseData = await resp.json();
-    console.log(responseData);
+    console.log(responseData.email);
+    if(responseData.email){
+      checkMail.classList.add("active");
+    }
     localStorage.removeItem('userInfo')
     location.reload();
   } catch (error) {
